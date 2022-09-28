@@ -1,63 +1,79 @@
 # <center>Projeto de Regressão - Rossmann</center>
 
-# <center><img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Dirk_Rossmann_GmbH.jpg" align="center" style="width:300.0px;"/></center>
+# <center><img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Dirk_Rossmann_GmbH.jpg" align="center" style="width:70%"/></center>
 
 ## 1. Questão de negócio
 
 ### 1.1. Sobre a empresa
-<p align="justify">A Rossmann é uma das maiores cadeias de drogarias da Europa. Com sua primeira loja aberta em 1972 em Hanôver, na Alemanha, a rede hoje está presente em outros 7 países do continente europeu com mais de 4000 unidades abertas.</p>
+<p align="justify">A Rossmann é uma das maiores cadeias de drogarias da Europa. Com sua primeira loja aberta em 1972 em Hanôver, na Alemanha, a rede hoje está presente em outros 7 países do continente europeu com mais de 4000 unidades abertas. Seu foco é a venda de produtos de cuidados pessoais e do lar, como dermocosméticos e perfumes, itens de higiene pessoal, produtos de limpeza, utensílios domésticos e decorações, além de comidas e bebidas.</p>
 
 ### 1.2. Sobre o projeto
-<p align="justify"></p>
+<p align="justify">Buscando a modernização de suas unidades para elevar a experiência de compra de seus clientes, a empresa deseja eleger as melhores lojas para receber reformas e, para isso, foi solicitado ao time de Data um pedido de ajuda com a previsão de vendas de cada loja nas próximas 6 semanas.</p>
+<p align="justify">O faturamento de cada unidade é pode sofrer influência de diversos fatores como época do ano, presença de promoções e distância de outros concorrentes diretos. Como forma de analisar as influências de cada variável e realizar a predição das vendas, este projeto realizará uma análise exploratória inicial dos dados históricos de performance das unidades e aplicará um modelo de Machine Learning.</p>
+<p align="justify">Desta forma, o objetivo do projeto é, primordialmente:</p>
+
+> - Elencar as unidades da Rossmann em ordem crescente de previsão de vendas nas próximas 6 semanas e;<br/>
+> - Desenvolver uma ferramenta útil, efetiva, rápida e descomplicada para visualização dos resultados.
+
+<p align="justify">A metodologia CRISP será base para desenvolvimento do projeto. O CRISP, ou Cross-Industry Standard Process, é um modelo cíclico de desenvolvimento de projetos de dados. Inicialmente empregado em desafios de mineiração de dados, a metodologia fornece um caminho padronizado com seis fases: entendimento do negócio, entendimento dos dados, preparação dos dados, modelagem, avaliação e implantação. Para este trabalho será aplicada uma modificação do CRISP, cujos passos seguidos em cada ciclo é exemplificado na figura abaixo:</p>
+
+<center><img src="/home/lucas/Imagens/Modelo Cíclico.png" align="center" style="width:70%"/></center>
+
+<p align="justify">O princípio fundamental e maior vantagem do modelo CRISP é agilizar a entrega de resultados relevantes e pertinentes do projeto, ou seja, todo o ciclo será percorrido elencando premissas e buscando a maneira mais simples e rápida de resolução do desafio. Ao final do ciclo, o público-alvo já tera uma versão inicial perfeitamente usável do projeto e será capaz de avaliar se o produto final atende suas necessidades. Caso contrário, um novo ciclo completo pode ser aplicado para melhorar o produto e nesta nova implementação da metodologia serão feitos procedimentos como escolha de mais ou menos variáveis independentes, implementação de outros parâmetros do modelo de aprendizado de máquina ou ainda o uso de um novo modelo, adaptações da forma de entrega o produto final, entre outros.</p>
 
 ### 1.3. Visão geral do conjunto de dados
 #### Conjunto de dados bruto
-<p align="justify">.</p>
+<p align="justify">Foram disponibilizadas três arquivos em formato .csv. A descrição de cada um deles será apresentada abaixo:</p>
 
-Estas X colunas são descritas abaixo:
+<strong>Nome do arquivo:</strong> train.csv<br/>
+<strong>Descrição:</strong> contém os dados de vendas de cada loja, estas identificadas por um ID único, assim como atributos de sazonalidade.
 
-train.csv
-
-| **Coluna**    | **Descrição**                                                                                                                                                                                                                        |
-|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Store         | a unique Id for each store                                                                                                                                                                                                           |
-| DayOfWeek     | the day of the week of the store operation date: starting with 1 as Monday                                                                                                                                                           |
-| Date          | date of store operation, on YYYY-MM-DD format                                                                                                                                                                                        |
-| Sales         | the turnover for any given day (this is what you are predicting)                                                                                                                                                                     |
-| Customers     | the number of customers on a given day                                                                                                                                                                                               |
-| Open          | an indicator for whether the store was open: 0 = closed, 1 = open                                                                                                                                                                    |
-| Promo         | indicates whether a store is running a promo on that day                                                                                                                                                                             |
-| StateHoliday  | indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = None |
-| SchoolHoliday | indicates if the (Store, Date) was affected by the closure of public schools                                                                                                                                                         |
-
-store.csv
-
-| **Coluna**                | **Descrição**                                                                                                                                                                                                              |
-|:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Store                     | a unique Id for each store                                                                                                                                                                                                 |
-| StoreType                 | differentiates between 4 different store models: a, b, c, d                                                                                                                                                                |
-| Assortment                | describes an assortment level: a = basic, b = extra, c = extended                                                                                                                                                          |
-| CompetitionDistance       | distance in meters to the nearest competitor store                                                                                                                                                                         |
-| CompetitionOpenSinceMonth | gives the approximate month of the time the nearest competitor was opened                                                                                                                                                  |
-| CompetitionOpenSinceYear  | gives the approximate year of the time the nearest competitor was opened                                                                                                                                                   |
-| Promo2                    | Promo2 is a continuing and consecutive promotion for some stores: 0 = store is not participating, 1 = store is participating                                                                                               |
-| Promo2SinceWeek           | describes the calendar week when the store started participating in Promo2                                                                                                                                                 |
-| Promo2SinceYear           | describes the year when the store started participating in Promo2                                                                                                                                                          |
-| PromoInterval             | describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store |
+| **Coluna**    | **Descrição**                                                                                                                                                                                                                                                                              |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Store         | um ID único para cada loja                                                                                                                                                                                                                                                                 |
+| DayOfWeek     | o dia da semana da data de operação da loja: começando com 1 para segunda-feira                                                                                                                                                                                                            |
+| Date          | data de operação da loja, no formato AAAA-MM-DD                                                                                                                                                                                                                                            |
+| Sales         | o faturamento de cada dia (esta é a variável que será estimada)                                                                                                                                                                                                                            |
+| Customers     | o número de clientes do dia                                                                                                                                                                                                                                                                |
+| Open          | um indicador para se a loja estava aberta: 0 = fechada, 1 = aberta                                                                                                                                                                                                                         |
+| Promo         | indica se a loja estava com uma promoção ativa naquela data                                                                                                                                                                                                                                |
+| StateHoliday  | indica um feriado estadual. Normalmente todas as lojas, com poucas exceções, são fechadas durante os feriados estaduais. Perceba que todas as escolas estão fechadas em feriados públicos e durante os finais de semana. a = feriado público, b = feriado da Páscoa, c = Natal, 0 = nenhum |
+| SchoolHoliday | indica se (Store, Date) foi afetada pelo fechamento de escolas públicas                                                                                                                                                                                                                    |
+<br/>
 
 
-test.csv
+<strong>Nome do arquivo:</strong> store.csv<br/>
+<strong>Descrição:</strong> contém os atributos de cada loja.
 
-| **Coluna**    | **Descrição**                                                                                                                                                                                                                        |
-|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Id            | an Id that represents a (Store, Date) duple within the test set                                                                                                                                                                      |
-| Store         | a unique Id for each store                                                                                                                                                                                                           |
-| DayOfWeek     | the day of the week of the store operation date: starting with 1 as Monday                                                                                                                                                           |
-| Date          | date of store operation, on YYYY-MM-DD format                                                                                                                                                                                        |
-| Open          | an indicator for whether the store was open: 0 = closed, 1 = open                                                                                                                                                                    |
-| Promo         | indicates whether a store is running a promo on that day                                                                                                                                                                             |
-| StateHoliday  | indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = None |
-| SchoolHoliday | indicates if the (Store, Date) was affected by the closure of public schools                                                                                                                                                         |
+| **Coluna**                | **Descrição**                                                                                                                                                                                                                                             |
+|:--------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Store                     | um ID único para cada loja                                                                                                                                                                                                                                |
+| StoreType                 | categorização das lojas em 4 diferentes tipos: a, b, c, d                                                                                                                                                                                                 |
+| Assortment                | descreve um nível de sortimento: a = básico, b = extra, c = estendido                                                                                                                                                                                     |
+| CompetitionDistance       | distância em metros à loja concorrente mais próxima                                                                                                                                                                                                       |
+| CompetitionOpenSinceMonth | mês aproximado quando a loja concorrente mais próxima foi inaugurada                                                                                                                                                                                      |
+| CompetitionOpenSinceYear  | ano aproximado quando a loja concorrente mais próxima foi inaugurada                                                                                                                                                                                      |
+| Promo2                    | Promo2 é uma promoção continuada e consegutiva para algumas lojas: 0 = loja participante, 1 = loja não participante                                                                                                                                       |
+| Promo2SinceWeek           | descreve a semana do ano quando a loja iniciou a participação na Promo2                                                                                                                                                                                   |
+| Promo2SinceYear           | descreve o ano quando a loja iniciou a participação da Promo2                                                                                                                                                                                             |
+| PromoInterval             | descreve os interalos consecutivos quando a Promo2 é iniciada, indicando os meses quando se inicia uma nova Promo2. Por exemplo, "Feb,May,Aug,Nov" significa que cada ciclo começa em fevereiro, maio, agosto e novembro de qualquer ano para aquela loja |
+
+<br/>
+
+
+<strong>Nome do arquivo:</strong> test.csv<br/>
+<strong>Descrição:</strong> contém dados de teste.
+
+| **Coluna**    | **Descrição**                                                                                                                                                                                                                                                                              |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Id            | um ID que representa uma tupla (Store, Date) nos dados de teste                                                                                                                                                                                                                            |
+| Store         | um ID único para cada loja                                                                                                                                                                                                                                                                 |
+| DayOfWeek     | o dia da semana da data de operação da loja: começando com 1 para segunda-feira                                                                                                                                                                                                            |
+| Date          | data de operação da loja, no formato AAAA-MM-DD                                                                                                                                                                                                                                            |
+| Open          | um indicador para se a loja estava aberta: 0 = fechada, 1 = aberta                                                                                                                                                                                                                         |
+| Promo         | indica se a loja estava com uma promoção ativa naquela data                                                                                                                                                                                                                                |
+| StateHoliday  | indica um feriado estadual. Normalmente todas as lojas, com poucas exceções, são fechadas durante os feriados estaduais. Perceba que todas as escolas estão fechadas em feriados públicos e durante os finais de semana. a = feriado público, b = feriado da Páscoa, c = Natal, 0 = nenhum |
+| SchoolHoliday | indica se (Store, Date) foi afetada pelo fechamento de escolas públicas                                                                                                                                                                                                                    |
 
 ## 2. Premissas do negócio
 <p align="justify">Para a elaboração deste trabalho, as seguintes premissas são adotadas:</p>
@@ -66,7 +82,11 @@ test.csv
 ## 3. Planejamento da solução
 ### 3.1 O método SAPE (Saída - Processo - Entrada)
 #### Saída (Produto final)
-Serão fornecidos 
+Serão fornecidos:
+
+- Um <i>Jupyter notebook</i> com o desenvolvimento técnico do CRISP para o projeto;
+- Uma apresentação de negócios com o desenvolvimento e resultados do projeto;
+- Um <i>bot</i> do aplicativo de mensagens Telegram com as previsões de venda das lojas.
     
 
 
@@ -99,6 +119,8 @@ Serão fornecidos
 
 #### Entrada
 - Os dados deste projeto foram retirados do portal Kaggle e estão disponíveis no link:
+
+    [https://www.kaggle.com/competitions/rossmann-store-sales/data](https://www.kaggle.com/competitions/rossmann-store-sales/data)
    
 
 ## 4. Teste de hipóteses e insights do negócio
