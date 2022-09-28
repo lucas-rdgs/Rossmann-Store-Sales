@@ -1,11 +1,11 @@
 # <center>Projeto de Regressão - Rossmann</center>
 
-# <center><img src="https://thumbs.dreamstime.com/b/classic-view-famous-painted-ladies-san-francisco-162287344.jpg" align="center" style="height: 387.8px; width:600.0px;"/></center>
+# <center><img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Dirk_Rossmann_GmbH.jpg" align="center" style="width:300.0px;"/></center>
 
 ## 1. Questão de negócio
 
 ### 1.1. Sobre a empresa
-<p align="justify"></p>
+<p align="justify">A Rossmann é uma das maiores cadeias de drogarias da Europa. Com sua primeira loja aberta em 1972 em Hanôver, na Alemanha, a rede hoje está presente em outros 7 países do continente europeu com mais de 4000 unidades abertas.</p>
 
 ### 1.2. Sobre o projeto
 <p align="justify"></p>
@@ -16,29 +16,48 @@
 
 Estas X colunas são descritas abaixo:
 
-| **Coluna**        | Descrição                                                                                                                             |
-|:-------------------|:---------------------------------------------------------------------------------------------------------------------------------------|
-| **id**            | Código único identificador do imóvel vendido                                                                                                 |
-| **date**          | Data de venda do imóvel                                                                                                |
-| **price**         | Preço de venda da propriedade                                                                                                                  |
-| **bedrooms**      | Número de quartos                                                                                                                     |
-| **bathrooms**     | Número de banheiros                                                                                                                   |
-| **sqft_living**   | Área, em pés quadrados, de área construída                                                                                            |
-| **sqft_lot**      | Área, em pés quadrados, de área do lote                                                                                               |
-| **floors**        | Número de andares                                                                                                                     |
-| **waterfront**    | Vista para água. Caso o valor seja 1, o imóvel possui vista para a costa. O valor 0 indica que o imóvel não possui vista para a costa |
-| **view**          | Condição de vista do imóvel. 4 indica excelente; 3 indica ótimo; 2 indica regular; 1 indica ruim; 0 indica péssima                                                                                                                                   |
-| **condition**     | Condição do imóvel. 5 excelente. 4 boa; 3 regular; 2 ruim; 1 péssima                                                          |
-| **grade**         | Índice de 1 a 13, onde 1-3 peca em construção e design; 7 possui um nível médio de construção e design; 11-13 possui alta qualidade de construção e design                                                                                    |
-| **sqft_above**    | Área, em pés quadrados, dos andares a partir do térreo |
-| **sqft_basement** | Área, em pés quadrados, do porão, caso haja                                                                                         |
-| **yr_built**      | Ano de construção do imóvel                                                                                                           |
-| **yr_renovated**  | Ano da última reforma do imóvel, caso haja                                                                                                   |
-| **zipcode**       | Código postal                                                                                                                         |
-| **lat**           | Latitude, em graus                                                                                                                    |
-| **long**          | Longitude, em graus                                                                                                                   |
-| **sqft_living15** | Área, em pés quadrados, da área construída dos 15 vizinhos mais próximos                                                                                                           |
-| **sqft_lot15**    | Área, em pés quadrados, da área total dos 15 vizinhos mais próximos                                                                                                           |
+train.csv
+
+| **Coluna**    | **Descrição**                                                                                                                                                                                                                        |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Store         | a unique Id for each store                                                                                                                                                                                                           |
+| DayOfWeek     | the day of the week of the store operation date: starting with 1 as Monday                                                                                                                                                           |
+| Date          | date of store operation, on YYYY-MM-DD format                                                                                                                                                                                        |
+| Sales         | the turnover for any given day (this is what you are predicting)                                                                                                                                                                     |
+| Customers     | the number of customers on a given day                                                                                                                                                                                               |
+| Open          | an indicator for whether the store was open: 0 = closed, 1 = open                                                                                                                                                                    |
+| Promo         | indicates whether a store is running a promo on that day                                                                                                                                                                             |
+| StateHoliday  | indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = None |
+| SchoolHoliday | indicates if the (Store, Date) was affected by the closure of public schools                                                                                                                                                         |
+
+store.csv
+
+| **Coluna**                | **Descrição**                                                                                                                                                                                                              |
+|:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Store                     | a unique Id for each store                                                                                                                                                                                                 |
+| StoreType                 | differentiates between 4 different store models: a, b, c, d                                                                                                                                                                |
+| Assortment                | describes an assortment level: a = basic, b = extra, c = extended                                                                                                                                                          |
+| CompetitionDistance       | distance in meters to the nearest competitor store                                                                                                                                                                         |
+| CompetitionOpenSinceMonth | gives the approximate month of the time the nearest competitor was opened                                                                                                                                                  |
+| CompetitionOpenSinceYear  | gives the approximate year of the time the nearest competitor was opened                                                                                                                                                   |
+| Promo2                    | Promo2 is a continuing and consecutive promotion for some stores: 0 = store is not participating, 1 = store is participating                                                                                               |
+| Promo2SinceWeek           | describes the calendar week when the store started participating in Promo2                                                                                                                                                 |
+| Promo2SinceYear           | describes the year when the store started participating in Promo2                                                                                                                                                          |
+| PromoInterval             | describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store |
+
+
+test.csv
+
+| **Coluna**    | **Descrição**                                                                                                                                                                                                                        |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Id            | an Id that represents a (Store, Date) duple within the test set                                                                                                                                                                      |
+| Store         | a unique Id for each store                                                                                                                                                                                                           |
+| DayOfWeek     | the day of the week of the store operation date: starting with 1 as Monday                                                                                                                                                           |
+| Date          | date of store operation, on YYYY-MM-DD format                                                                                                                                                                                        |
+| Open          | an indicator for whether the store was open: 0 = closed, 1 = open                                                                                                                                                                    |
+| Promo         | indicates whether a store is running a promo on that day                                                                                                                                                                             |
+| StateHoliday  | indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = None |
+| SchoolHoliday | indicates if the (Store, Date) was affected by the closure of public schools                                                                                                                                                         |
 
 ## 2. Premissas do negócio
 <p align="justify">Para a elaboração deste trabalho, as seguintes premissas são adotadas:</p>
