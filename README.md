@@ -15,7 +15,81 @@
 > - Elencar as unidades da Rossmann em ordem crescente de previsão de vendas nas próximas 6 semanas e;<br/>
 > - Desenvolver uma ferramenta útil, efetiva, rápida e descomplicada para visualização dos resultados.
 
+<p align="justify">A metodologia CRISP será base para desenvolvimento do projeto. O CRISP, ou Cross-Industry Standard Process, é um modelo cíclico de desenvolvimento de projetos de dados. Inicialmente empregado em desafios de mineiração de dados, a metodologia fornece um caminho padronizado com seis fases: entendimento do negócio, entendimento dos dados, preparação dos dados, modelagem, avaliação e implantação. Para este trabalho será aplicada uma 12
+
+<p align="justify">O faturamento de cada unidade pode sofrer influência de diversos fatores como época do ano, presença de promoções e distância de outros concorrentes diretos. Como forma de analisar as influências de cada variável e realizar a previsão das vendas, este projeto realizará uma análise exploratória inicial dos dados históricos de performance das unidades e aplicará um modelo de Machine Learning.</p>
+
+13
+
+<p align="justify">Desta forma, o objetivo do projeto é, primordialmente:</p>
+
+14
+
+​
+
+15
+
+> - Elencar as unidades da Rossmann em ordem crescente de previsão de vendas nas próximas 6 semanas e;<br/>
+
+16
+
+> - Desenvolver uma ferramenta útil, efetiva, rápida e descomplicada para visualização dos resultados.
+
+17
+
+​
+
+18
+
 <p align="justify">A metodologia CRISP será base para desenvolvimento do projeto. O CRISP, ou Cross-Industry Standard Process, é um modelo cíclico de desenvolvimento de projetos de dados. Inicialmente empregado em desafios de mineiração de dados, a metodologia fornece um caminho padronizado com seis fases: entendimento do negócio, entendimento dos dados, preparação dos dados, modelagem, avaliação e implantação. Para este trabalho será aplicada uma modificação do CRISP, cujos passos seguidos em cada ciclo é exemplificado na figura abaixo:</p>
+
+19
+
+​
+
+20
+
+<img src="https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/Modelo%20C%C3%ADclico.png" align="center" style="width:70%"/>
+
+21
+
+​
+
+22
+
+<p align="justify">O princípio fundamental e maior vantagem do modelo CRISP é agilizar a entrega de resultados relevantes e pertinentes do projeto, ou seja, todo o ciclo será percorrido elencando premissas e buscando a maneira mais simples e rápida de resolução do desafio. Ao final do ciclo, o público-alvo já terá uma versão inicial perfeitamente usável do projeto e será capaz de avaliar se o produto final atende suas necessidades. Caso contrário, um novo ciclo completo pode ser aplicado para melhorar o produto e nesta nova implementação da metodologia serão feitos procedimentos como escolha de mais ou menos variáveis independentes, implementação de outros parâmetros do modelo de aprendizado de máquina ou ainda o uso de um novo modelo, adaptações da forma de entrega o produto final, entre outros.</p>
+
+23
+
+​
+
+24
+
+### 1.3. Visão geral do conjunto de dados
+
+25
+
+#### Conjunto de dados bruto
+
+26
+
+<p align="justify">Foram disponibilizadas três arquivos em formato .csv. A descrição de cada um deles será apresentada abaixo:</p>
+
+27
+
+​
+
+28
+
+<strong>Nome do arquivo:</strong> train.csv<br/>
+
+29
+
+<strong>Descrição:</strong> contém os dados históricos de vendas de cada loja, estas identificadas por um ID único, assim como atributos temporais.
+
+30
+
+​modificação do CRISP, cujos passos seguidos em cada ciclo é exemplificado na figura abaixo:</p>
 
 <img src="https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/Modelo%20C%C3%ADclico.png" align="center" style="width:70%"/>
 
@@ -78,7 +152,20 @@
 ## 2. Premissas do negócio
 <p align="justify">Para a elaboração deste trabalho, as seguintes premissas são adotadas:</p>
 
+- O preenchimento de dados faltantes será realizado da seguinte forma:
 
+    - Coluna competition_distance: será atribuído um valor consideravelmente maior que o valor máximo dos dados originais, para facilmente diferenciar esse dado faltante;
+    - Coluna competition_open_since_month: será atribuído o valor do mês da data daquele registro;
+    - Coluna competition_open_since_year: será atribuído o valor do ano da data daquele registro;
+    - Coluna promo2_since_week: será atribuído o valor da semana da data daquele registro;
+    - Coluna promo2_since_year: será atribuído o valor do ano da data daquele registro;
+    - Coluna promo_interval: será atribuído o valor 0;
+    - Coluna month_map: será atribuído o numeral corresponte ao mês da data do registro, iniciando em 1 para janeiro;
+    - Coluna is_promo: será atribuído o valor de 1 para os registros em que a coluna month_map corresponda a um mês (valor diferente de 0), caso contrário será atrobuído o valor 0.
+
+- Serão desconsiderados registros em que as lojas estavam fechadas ou que mesmo abertas não apresentam valores de vendas;
+- A previsão número de clientes não será trabalhada.
+    
 ## 3. Planejamento da solução
 ### 3.1 O método SAPE (Saída - Processo - Entrada)
 #### Saída (Produto final)
@@ -266,7 +353,15 @@ Serão fornecidos:
 |:---------------:|:-------------------------------------------:|:---------------------------------:|
 |       856       |                 $276.908,15                 |          $237.033.377,31          |
 
-<p align="justify">Abaixo está uma tabela com as 5 lojas com maiores vendas previstas para as próximas 6 semanas:</p>
+<p align="justify">Abaixo está uma tabela com as 5 lojas com maiores vendas previstas para as próximas 6 semanas. A tabela completa está carregada nos arquivos deste trabalho</p>
+
+| **store** | **store_type** | **assortment** | **prediction** |
+|:---------:|:--------------:|:--------------:|:--------------:|
+|    262    |        b       |      basic     |   $878.736,57  |
+|    1114   |        a       |    extended    |   $877.711,62  |
+|    562    |        b       |    extended    |   $852.243,01  |
+|    733    |        b       |      extra     |   $737.265,82  |
+|    251    |        a       |    extended    |   $704.585,78  |
 
 
 
