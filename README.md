@@ -26,7 +26,7 @@
 <p align="justify">Foram disponibilizadas três arquivos em formato .csv. A descrição de cada um deles será apresentada abaixo:</p>
 
 <strong>Nome do arquivo:</strong> train.csv<br/>
-<strong>Descrição:</strong> contém os dados de vendas de cada loja, estas identificadas por um ID único, assim como atributos de sazonalidade.
+<strong>Descrição:</strong> contém os dados históricos de vendas de cada loja, estas identificadas por um ID único, assim como atributos temporais.
 
 | **Coluna**    | **Descrição**                                                                                                                                                                                                                                                                              |
 |:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -43,7 +43,7 @@
 
 
 <strong>Nome do arquivo:</strong> store.csv<br/>
-<strong>Descrição:</strong> contém os atributos de cada loja.
+<strong>Descrição:</strong> contém dados históricos com os atributos de cada loja.
 
 | **Coluna**                | **Descrição**                                                                                                                                                                                                                                             |
 |:--------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,7 +62,7 @@
 
 
 <strong>Nome do arquivo:</strong> test.csv<br/>
-<strong>Descrição:</strong> contém dados de teste.
+<strong>Descrição:</strong> contém os dados históricos, com exceção das vendas, das lojas as quais se deseja que sejam feitas as previsões.
 
 | **Coluna**    | **Descrição**                                                                                                                                                                                                                                                                              |
 |:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -85,6 +85,7 @@
 Serão fornecidos:
 
 - Um <i>Jupyter notebook</i> com o desenvolvimento técnico do CRISP para o projeto;
+- Uma arquivo .csv com as previsões de vendas das lojas desejadas, em ordem decrescente de vendas;
 - Uma apresentação de negócios com o desenvolvimento e resultados do projeto;
 - Um <i>bot</i> do aplicativo de mensagens Telegram com as previsões de venda das lojas.
     
@@ -93,29 +94,106 @@ Serão fornecidos:
 #### Processo (Passo-a-passo)
 <strong>1. Extração dos dados (Extraction)</strong>
 
+0. Importação das bibliotecas e função auxiliares
+    - Funções auxiliares:
+        - Supressão de avisos
+        - Definição do tamanho dos gráficos
+        - Cálculos da função de V de Crémer
+        - Cálculo das funções de erro
+        - Definição da função de Cross Validation
+        
+    - Carregamento dos dados
+        - Dados de treino e dados das lojas
+            - Merge dessas bases
+        - Dados de teste (retirar)
+        
+<strong>2. Transformação dos dados (Transformation)</strong>  
 
-<strong>2. Transformação dos dados (Transformation)</strong>
+1. Descrição dos dados
+    - Alteração do título das colunas
+    - Conferência do tamanho dos dados
+    - Alteração dos tipos de dados
+    - Conferência e tratamento de dados faltantes
+    - Estatísticas descritivas
+        - Variáveis numéricas
+            - Tendências central e de dispersão
+       - Variáveis categóricas
+            - Distribuições (boxplot)
+            
+2. Feature Engineering
+    - Mapa mental de hipóteses
+    - Criação das hipóteses
+        - Hipóteses Loja
+        - Hipóteses Produto
+        - Hipóteses Tempo
+     - Lista final de hipóteses
+    - Feature engineering
+        - Criação de colunas
+        
+3. Filtragem de variáveis
+    - Filtragem de linhas, excluindo vendas zeradas e lojas fechadas
+    - Filtragem de colunas, excluindo as que não serão utilizadas na análise exploratória de dados
+        
+4. Análise exploratória de dados
+    - Análise Univariada
+        - Distribuição da variável resposta
+        - Distribuições das variáveis numéricas
+        - Contagem e distribuições das variáveis categóricas
+    - Análise bivariada
+        - Validação das hipóteses elencadas no passo de Feature Engineering
+            - Determinação da relevância de cada hipótese
+    - Análise multivariada
+        - Variáveis numéricas
+            - Correlação entre as variáveis pelo método de Pearson
+        - Variáveis categóricas
+            - Correlações entre as variáveis usando o método V de Cramér
+            
+5. Preparação dos dados
+    - Normalização (não há)
+    - Rescaling
+    - Transformação
+        - Encoding
+        - Transformação da variável resposta
+        - Transformação de natureza
+            - Variáveis cíclicas
 
-2.1. Limpeza dos dados
-
-
-
-2.2. Criação de novas colunas
-
-
-
-
-
-
+6. Seleção de atributos
+    - Método Boruta
+        - Separação de dados de treino e teste pelas últimas 6 semanas dos dados
+        - Random Forest Regressor
+        - Seleção das colunas pelo método
+        - Seleção manual das colunas obtidas pelo método
+        
 <strong>3. Carregamento dos dados (Loading)</strong>
 
-3.1. Validação de hipóteses
+7. Modelos de aprendizados de máquina (Machine Learning)
+    - Filtragem dos dados usando as colunas selecionadas pelo Boruta
+    - Aplicação de modelos
+        - Modelo de média - guia inicial
+        - Modelo de regressão linear
+        - Modelo de regressão linear regularizado tipo Lasso
+        - Modelo árvore aleatória (Random Forest)
+        - Regressor XGBoost
+    - Cross Validation dos modelos de Machine Learning
+    - Comparação dos desempenhos individuais e após cross validation
+    - Escolha do modelo a ser utilizado para predição, com base em erro, complexidade e tempo de execução. Neste caso, o modelo utilizado será o XGBoost
 
-- <strong>H1</strong>: Imóveis que possuem vista para água são em média 30% mais caros;
-- <strong>H2</strong>: Imóveis com data de construção menor que 1957 são em média 50% mais baratos;
+8. Afinação de hiperparâmetros
+    - Determinação de conjuntos de valores arbitrários para os parâmetros do modelo XGBoost
+    - Teste de dos parâmetros e continuidade da aplicação do modelo com os melhores parâmetros selecionados
+    - Salvamento do modelo com a biblioteca pickle para economizar tempo em próximas execuções
 
+9. Tradução e interpretação do erro
+    - Desempenho de negócio, apresentando os erros absolutos e percentuais e aplicando-os aos valores preditos, calculando os melhores e piores cenários do modelo.
+    - Desempenho do modelo, plotando os erros e suas taxas
+    
+10. Implantação do modelo para produção
+    - Criação da classe Rossmann com os carregamentos, as transformações e aplicação de modelos
+    - Criação do API Handler
+    - Criação do API Tester para apresentar os resultados do modelo de maneira útil e rápida
 
-3.2. Avaliação de insights para o negócio
+11. Desenvolvimento do Bot do Telegram
+
 
 #### Entrada
 - Os dados deste projeto foram retirados do portal Kaggle e estão disponíveis no link:
@@ -126,49 +204,63 @@ Serão fornecidos:
 ## 4. Teste de hipóteses e insights do negócio
 
 ### 4.1. Hipóteses
-<p align="justify"> Foram testadas X hipóteses acerca do conjunto de dados dos imóveis, com seus resultados e descrições abaixo:</p>
+<p align="justify"> Foram testadas 11 hipóteses acerca do conjunto de dados das lojas no primeiro ciclo do CRISP, com seus resultados e descrições abaixo:</p>
 
-| Hipótese | Validação | Significado para o negócio |
-|:---------|:----------|:---------------------------|
-| <strong>H1: </strong>Imóveis com porão possuem em média área total 20% maior | Verdadeira | A média de área total construída dos imóveis com porão é 20,13% maior que aqueles que não possuem este cômodo. Devem ser considerados visto que o aumento de área total é significativo. |
-| <strong>H2: </strong>Imóveis com reformas são em média 40% mais caros | Verdadeira | O preço médio dos imóveis que foram reformados é 43% em relação aos que nunca passaram por processos de renovação. É aconselhável comprar imóveis com condições boas para então reformá-los visando lucro na revenda. |
-| <strong>H3: </strong>Imóveis com até 2 quartos são em média 30% mais baratos. | Verdadeira | Os imóveis com menos de 2 quartos são em média 30% mais baratos que aqueles que possuem mais dormitórios. Estes imóveis são boa opção de portfólio com preços mais baixos. |
-| <strong>H4: </strong>Imóveis que possuem vista para água são em média 30% mais caros | Falsa | Imóveis com vista para a água são em média 214% mais caros. |
-| <strong>H5: </strong>Imóveis com data de construção menor que 1957 são em média 50% mais baratos | Falsa | Os imóveis mais antigos possuem pequena variação de preço médio comparado aos mais novos, construídos a partir de 1957, sendo apenas 2.83% mais barato. Quando comparado com outros atributos do portfólio, este possui menor significância. |
-| <strong>H6: </strong>O crescimento do preço dos imóveis Year over Year (YoY) é de 10% | Falsa | O preço médio dos imóveis vendidos em 2015 são apenas 0.53% maiores que aqueles vendidos no ano anterior. Assim, este comportamento não deve ser levado em conta no estudo. |
-| <strong>H7: </strong>O crescimento do preço dos imóveis Month over Month (MoM) de 15% | Falsa | Entre os meses de maio/2014 e maio/2015, a variação do preço médio dos imóveis variou dentro de um intervalo de -3% e 7% em relação ao mês anterior, nunca alcançando uma variação de 15%. |
-| <strong>H8: </strong>Imóveis com condição a partir de 3 são em média 40% mais caros que os imóveis com condição 1. | Falsa | Imóveis com condições acima de 3, ou seja, os imóveis que são considerados "bons" ou melhores, possuem preço médio 60% maiores que aqueles com condições ruins. Portanto, estes imóveis possuem maior valor de mercado. |
-| <strong>H9: </strong>Imóveis com porão são em média 5% mais caros. | Falsa | Imóveis com porão, além de maiores em área total, são também 28% mais caros. Consequentemente, são imóveis mais bem avaliados. |
-| <strong>H10: </strong>Imóveis são vendidos no verão por um preço médio 15% maior que no inverno. | Falsa | A variação entre os preços médios dos imóveis vendidos no verão e no inverno é de apenas 3%. Ou seja, não há variação significativa entre os preços nas duas estações. |
-
+| Hipótese | Validação | Significado para o negócio | Relevância |
+|:---------|:----------|:---------------------------|:-----------|
+| <strong>H1: </strong>Lojas com maior sortimentos deveriam vender mais | Falsa | Lojas com **maior sortimento** vendem **menos**. | Baixa |
+| <strong>H2: </strong>Lojas com competidores mais próximos deveriam vender menos | Falsa | Lojas com **competidores mais próximos** vendem **mais**. | Média |
+| <strong>H3: </strong>Lojas com competidores há mais tempo deveriam vender mais | Falsa | Lojas com **competidores há mais tempo** vendem **menos**. | Média |
+| <strong>H4: </strong>Lojas com promoções ativas por mais tempo deveriam vender mais | Falsa | O efeito da promoção é positivo até certo ponto, **próximo aos valores mais altos** dos períodos de promoção **as vendas caem**. | Baixa |
+| <strong>H5: </strong>Lojas com mais promoções consecutivas deveriam vender mais | Falsa |Lojas com mais promoções consecutivas vendem **menos**. | Baixa |
+| <strong>H6: </strong>Lojas abertas durante o feriado de Natal deveriam vender mais | Falsa | Lojas abertas durante o **feriado de Natal** vendem **menos** em relação aos outros feriados. | Média |
+| <strong>H7: </strong>Lojas deveriam vender mais ao longo dos anos | Falsa | As lojas estão vendendo **menos** ao longo dos anos. | Alta |
+| <strong>H8: </strong>Lojas deveriam vender mais no segundo semestre do ano | Falsa | As lojas estão vendendo **menos** no **segundo semestre** do ano. | Alta |
+| <strong>H9: </strong>Lojas deveriam vender mais depois do dia 10 de cada mês. | Verdadeira | Lojas **vendem mais depois do dia 10** de cada mês. | Alta |
+| <strong>H10: </strong>Lojas deveriam vender menos aos finais de semana | Verdadeira | Lojas **vendem menos** aos **finais de semana**. | Alta |
+| <strong>H11: </strong>Lojas deveriam vender menos durante os feriados escolares | Verdadeira | Lojas vendem **menos** durante os **feriados escolares**. Porém, nos meses de julho e agosto as vendas em feriados escolares são equiparáveis e maiores, respectivamente, que as vendas em dias sem feriados escolares, pois nesses meses ocorrem as férias escolares de verão. | Baixa |
 
 ### 4.2. Insights
-<p align="justify" >A análise exploratória dos dados ___ proporciona alguns insights:</p>
+<p align="justify" >A análise exploratória dos dados proporciona alguns insights:</p>
 
 #### Insight 1: 
-<p align="justify" ></p>
+<p align="justify"></p>
 
 #### Insight 2: 
-<p align="justify" </p>
+<p align="justify"></p>
 
 #### Insight 3: 
-<p align="justify" ></p>
+<p align="justify"></p>
 
 
 ## 5. Resultados financeiros para o negócio
-<p align="justify"</p>
+<p align="justify">Os valores médios e totais das previsões das 856 lojas da Rossmann para as próximas semanas estão apresentados abaixo:</p>
 
-| Número de imóveis | Preço de compra total | Preço de venda total | Faturamento total |
-|:-----------------:|:---------------------:|:--------------------:|:-----------------:|
-|       3872        | \$1.522.626.895,00    | \$1.959.734.476,70   | \$437.107.581,70  |
+| Número de lojas | Venda média por loja nas próximas 6 semanas | Vendas total nas próximas semanas |
+|:---------------:|:-------------------------------------------:|:---------------------------------:|
+|       856       |                 $276.908,15                 |          $237.033.377,31          |
 
-<p align="justify" ></p>
+<p align="justify">Abaixo está uma tabela com as 5 lojas com maiores vendas previstas para as próximas 6 semanas:</p>
+
+
+<p align="justify">Atendendo ao segundo objetivo deste projeto – descrito na seção 1.2 Sobre o projeto –, foi desenvolvido um bot no aplicativo de mensagens Telegram em que o usuário pode digitar o código da loja que deseja receber a previsão de vendas, recebendo uma mensagem como na imagem a seguir:</p>
 
 ## 6. Conclusão
-<p align="justify" ></p>
+<p align="justify"></p>
 
 ## 7. Próximos passos
-<p align="justify" >Este projeto pode ir além nas análises e visualizações já aqui desenvolvidas, incluindo intens como:</p>
+<p align="justify">Um novo ciclo do CRISP pode ser desenvolvido para aperfeiçoar o desempenho do modelo e reduzir o erro da previsão das vendas das lojas da Rossmann. Várias abodagens podem ser adotadas, porém pontos importantes não podem ser ignorados pois fornecem melhoras consideráveis na execução do projeto. Uma ordem decrescente de importância de técnicas é apresentada abaixo:</p>
+
+> - Seleção de diferentes atributos que influenciam as vendas das lojas;
+> - Teste de novos modelos de Machine Learning;
+> - Refinamento de hiperparâmetros, com novos parâmetros.
+
+<p align="justify">Além das melhorias no modelo de Machine Learning, podem ser feitas modificações no bot do Telegram, tornando a experiência do usuário mais intuitiva e visualmente prazerosa, adotando funcionalidades como:</p>
+
+> - Mensagem inicial;
+> - Função de ajuda;
+> - Possibilidade de solicitar as previsões de mais de uma loja na mesma mensagem;
+> - Teclado personalizado com as funções da aplicação.
 
 ## 8. Tecnologias
 ### Desenvolvimento do código
@@ -178,14 +270,13 @@ Serão fornecidos:
 
 [<img src="https://freepikpsd.com/file/2019/10/Python-PNG-File.png" style="height: 50px" align="left"/>](https://www.python.org/)
                                                                                                                   
-[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/1200px-Pandas_logo.svg.png" style="height: 50px" align="left"/>](https://pandas.pydata.org/)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/1200px-Pandas_logo.svg.png" style="height: 50px" align="left"/>](https://pandas.pydata.org/)<br/><br/><br/>
 
-[<img src="https://geopandas.org/en/latest/_images/geopandas_logo.png" style="height: 40px" align="left"/>](https://geopandas.org/en/stable/)<br/><br/><br/>
 
-### Construção e publicação dos dashboards
-[<img src="https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.svg" style="height: 50px" align="left"/>](https://streamlit.io/)
+### Desenvolvimento da API
+[<img src="https://blog.back4app.com/wp-content/uploads/2020/12/O-que-e-o-Heroku.png" style="height: 50px" align="left"/>](http://heroku.com)
 
-[<img src="https://blog.back4app.com/wp-content/uploads/2020/12/O-que-e-o-Heroku.png" style="height: 50px" align="left"/>](http://heroku.com)<br/><br/>
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" style="height: 50px" align="left"/>](https://core.telegram.org/bots)<br/><br/>
 
                                                                                                                     
 ## 9. Sobre o autor
