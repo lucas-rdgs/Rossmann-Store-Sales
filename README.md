@@ -9,7 +9,7 @@
 
 ### 1.2. Sobre o projeto
 <p align="justify">Buscando a modernização de suas unidades para elevar a experiência de compra de seus clientes, a empresa deseja eleger as melhores lojas para receber reformas e, para isso, foi solicitado ao time de Data um pedido de ajuda com a previsão de vendas de cada loja nas próximas 6 semanas.</p>
-<p align="justify">O faturamento de cada unidade é pode sofrer influência de diversos fatores como época do ano, presença de promoções e distância de outros concorrentes diretos. Como forma de analisar as influências de cada variável e realizar a predição das vendas, este projeto realizará uma análise exploratória inicial dos dados históricos de performance das unidades e aplicará um modelo de Machine Learning.</p>
+<p align="justify">O faturamento de cada unidade pode sofrer influência de diversos fatores como época do ano, presença de promoções e distância de outros concorrentes diretos. Como forma de analisar as influências de cada variável e realizar a previsão das vendas, este projeto realizará uma análise exploratória inicial dos dados históricos de performance das unidades e aplicará um modelo de Machine Learning.</p>
 <p align="justify">Desta forma, o objetivo do projeto é, primordialmente:</p>
 
 > - Elencar as unidades da Rossmann em ordem crescente de previsão de vendas nas próximas 6 semanas e;<br/>
@@ -19,7 +19,7 @@
 
 <center><img src="/home/lucas/Imagens/Modelo Cíclico.png" align="center" style="width:70%"/></center>
 
-<p align="justify">O princípio fundamental e maior vantagem do modelo CRISP é agilizar a entrega de resultados relevantes e pertinentes do projeto, ou seja, todo o ciclo será percorrido elencando premissas e buscando a maneira mais simples e rápida de resolução do desafio. Ao final do ciclo, o público-alvo já tera uma versão inicial perfeitamente usável do projeto e será capaz de avaliar se o produto final atende suas necessidades. Caso contrário, um novo ciclo completo pode ser aplicado para melhorar o produto e nesta nova implementação da metodologia serão feitos procedimentos como escolha de mais ou menos variáveis independentes, implementação de outros parâmetros do modelo de aprendizado de máquina ou ainda o uso de um novo modelo, adaptações da forma de entrega o produto final, entre outros.</p>
+<p align="justify">O princípio fundamental e maior vantagem do modelo CRISP é agilizar a entrega de resultados relevantes e pertinentes do projeto, ou seja, todo o ciclo será percorrido elencando premissas e buscando a maneira mais simples e rápida de resolução do desafio. Ao final do ciclo, o público-alvo já terá uma versão inicial perfeitamente usável do projeto e será capaz de avaliar se o produto final atende suas necessidades. Caso contrário, um novo ciclo completo pode ser aplicado para melhorar o produto e nesta nova implementação da metodologia serão feitos procedimentos como escolha de mais ou menos variáveis independentes, implementação de outros parâmetros do modelo de aprendizado de máquina ou ainda o uso de um novo modelo, adaptações da forma de entrega o produto final, entre outros.</p>
 
 ### 1.3. Visão geral do conjunto de dados
 #### Conjunto de dados bruto
@@ -35,7 +35,7 @@
 | Date          | data de operação da loja, no formato AAAA-MM-DD                                                                                                                                                                                                                                            |
 | Sales         | o faturamento de cada dia (esta é a variável que será estimada)                                                                                                                                                                                                                            |
 | Customers     | o número de clientes do dia                                                                                                                                                                                                                                                                |
-| Open          | um indicador para se a loja estava aberta: 0 = fechada, 1 = aberta                                                                                                                                                                                                                         |
+| Open          | um indicador que indica se a loja estava aberta: 0 = fechada, 1 = aberta                                                                                                                                                                                                                  |
 | Promo         | indica se a loja estava com uma promoção ativa naquela data                                                                                                                                                                                                                                |
 | StateHoliday  | indica um feriado estadual. Normalmente todas as lojas, com poucas exceções, são fechadas durante os feriados estaduais. Perceba que todas as escolas estão fechadas em feriados públicos e durante os finais de semana. a = feriado público, b = feriado da Páscoa, c = Natal, 0 = nenhum |
 | SchoolHoliday | indica se (Store, Date) foi afetada pelo fechamento de escolas públicas                                                                                                                                                                                                                    |
@@ -53,7 +53,7 @@
 | CompetitionDistance       | distância em metros à loja concorrente mais próxima                                                                                                                                                                                                       |
 | CompetitionOpenSinceMonth | mês aproximado quando a loja concorrente mais próxima foi inaugurada                                                                                                                                                                                      |
 | CompetitionOpenSinceYear  | ano aproximado quando a loja concorrente mais próxima foi inaugurada                                                                                                                                                                                      |
-| Promo2                    | Promo2 é uma promoção continuada e consegutiva para algumas lojas: 0 = loja participante, 1 = loja não participante                                                                                                                                       |
+| Promo2                    | Promo2 é uma promoção continuada e consecutiva para algumas lojas: 0 = loja participante, 1 = loja não participante                                                                                                                                       |
 | Promo2SinceWeek           | descreve a semana do ano quando a loja iniciou a participação na Promo2                                                                                                                                                                                   |
 | Promo2SinceYear           | descreve o ano quando a loja iniciou a participação da Promo2                                                                                                                                                                                             |
 | PromoInterval             | descreve os interalos consecutivos quando a Promo2 é iniciada, indicando os meses quando se inicia uma nova Promo2. Por exemplo, "Feb,May,Aug,Nov" significa que cada ciclo começa em fevereiro, maio, agosto e novembro de qualquer ano para aquela loja |
@@ -85,7 +85,7 @@
 Serão fornecidos:
 
 - Um <i>Jupyter notebook</i> com o desenvolvimento técnico do CRISP para o projeto;
-- Uma arquivo .csv com as previsões de vendas das lojas desejadas, em ordem decrescente de vendas;
+- Um arquivo .csv com as previsões de vendas das lojas desejadas, em ordem decrescente de vendas;
 - Uma apresentação de negócios com o desenvolvimento e resultados do projeto;
 - Um <i>bot</i> do aplicativo de mensagens Telegram com as previsões de venda das lojas.
     
@@ -94,7 +94,7 @@ Serão fornecidos:
 #### Processo (Passo-a-passo)
 <strong>1. Extração dos dados (Extraction)</strong>
 
-0. Importação das bibliotecas e função auxiliares
+0. Importação das bibliotecas e funções auxiliares
     - Funções auxiliares:
         - Supressão de avisos
         - Definição do tamanho dos gráficos
@@ -221,7 +221,7 @@ Serão fornecidos:
 | <strong>H11: </strong>Lojas deveriam vender menos durante os feriados escolares | Verdadeira | Lojas vendem **menos** durante os **feriados escolares**. Porém, nos meses de julho e agosto as vendas em feriados escolares são equiparáveis e maiores, respectivamente, que as vendas em dias sem feriados escolares, pois nesses meses ocorrem as férias escolares de verão. | Baixa |
 
 ### 4.2. Insights
-<p align="justify" >A análise exploratória dos dados proporciona alguns insights:</p>
+<p align="justify">A análise exploratória dos dados proporciona alguns insights:</p>
 
 #### Insight 1: 
 <p align="justify"></p>
@@ -231,6 +231,34 @@ Serão fornecidos:
 
 #### Insight 3: 
 <p align="justify"></p>
+
+## 5. Desempenho do modelo
+<p align="justify">Após a aplicação do modelo de Machine Learning nos dados de treino e teste, é essencial que haja uma análise de erros. Variações entre valores reais e previstos por um modelo são inevitáveis, no entanto um bom modelo encontra valores aceitáveis destas diferenças. Esta etapa é essencial para a escolha entre seguir com os resultados obtidos ou continuar com um novo ciclo do CRISP. Nesta etapa usaremos os Erros Médio Absoluto e Percentual Médio Absoluto (leia mais sobre estas métricas aqui); em resumo, estes erros mostram o quanto em média o modelo pode prever além dos valores reais, para cima ou para baixo, em valores absolutos e percentuais.</p>
+
+| **Número de lojas do modelo** | **Previsão de vendas totais** | **Erro Médio Absoluto (MAE)** | **Erro Percentual Absoluto Médio (MAPE)** |
+|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------------------:|
+|              1115             |        $286.911.070,00        |            $744,05            |                   11,15%                  |
+
+<p align="justify">Olhando para os dados do modelo, as vendas totais previstas podem variar em média ±$744,05 ou ±11,15% dos valores reais. A0ssim, podemos determinar quais são as variações totais para mais e para menos dos dados treinados pelo modelo.</p>
+
+| **Cenário**                     |       **Vendas** |
+|---------------------------------|-----------------:|
+| Pior cenário (Previsão - MAE)   | R$286,078,167.83 |
+| Previsão                        | R$286,911,072.00 |
+| Melhor Cenário (Previsão + MAE) | R$287,743,976.35 |
+
+
+<p align="justify">Mas o principal objetido deste projeto é fazer as previsões individuas de cada unidade da Rossmann para que seja decidido sobre o fechamento temporário de cada loja para reformas, então é de grande importância a análise dos erros das previsões de cada loja. O mesmo raciocínio de erro pode ser aplicado em cada uma das lojas.</p>
+<p align="justify">O gráfico abaixo mostra os valores dos MAPEs em relação a cada uma das lojas inficivualmente. Algumas unidades possuem MAPEs acima de 0,3, ou seja, 30% de erro medio, com valores máximos ultrapassando os 50%. Porém, a grande maioria de unidades possuem MAPEs abaixo de 20%.</p>
+
+[Gráfico]
+
+
+<p align="justify"></p>
+
+[Gráfico]
+
+
 
 
 ## 5. Resultados financeiros para o negócio
