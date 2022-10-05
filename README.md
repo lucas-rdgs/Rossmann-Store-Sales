@@ -17,7 +17,7 @@
 
 <p align="justify">A metodologia CRISP será base para desenvolvimento do projeto. O CRISP, ou Cross-Industry Standard Process, é um modelo cíclico de desenvolvimento de projetos de dados. Inicialmente empregado em desafios de mineiração de dados, a metodologia fornece um caminho padronizado com seis fases: entendimento do negócio, entendimento dos dados, preparação dos dados, modelagem, avaliação e implantação. Para este trabalho será aplicada uma modificação do CRISP, cujos passos seguidos em cada ciclo é exemplificado na figura abaixo:</p>
 
-<center><img src="/home/lucas/Imagens/Modelo Cíclico.png" align="center" style="width:70%"/></center>
+<img src="https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/Modelo%20C%C3%ADclico.png" align="center" style="width:70%"/>
 
 <p align="justify">O princípio fundamental e maior vantagem do modelo CRISP é agilizar a entrega de resultados relevantes e pertinentes do projeto, ou seja, todo o ciclo será percorrido elencando premissas e buscando a maneira mais simples e rápida de resolução do desafio. Ao final do ciclo, o público-alvo já terá uma versão inicial perfeitamente usável do projeto e será capaz de avaliar se o produto final atende suas necessidades. Caso contrário, um novo ciclo completo pode ser aplicado para melhorar o produto e nesta nova implementação da metodologia serão feitos procedimentos como escolha de mais ou menos variáveis independentes, implementação de outros parâmetros do modelo de aprendizado de máquina ou ainda o uso de um novo modelo, adaptações da forma de entrega o produto final, entre outros.</p>
 
@@ -251,15 +251,13 @@ Serão fornecidos:
 <p align="justify">Mas o principal objetido deste projeto é fazer as previsões individuas de cada unidade da Rossmann para que seja decidido sobre o fechamento temporário de cada loja para reformas, então é de grande importância a análise dos erros das previsões de cada loja. O mesmo raciocínio de erro pode ser aplicado em cada uma das lojas.</p>
 <p align="justify">O gráfico abaixo mostra os valores dos MAPEs em relação a cada uma das lojas inficivualmente. Algumas unidades possuem MAPEs acima de 0,3, ou seja, 30% de erro medio, com valores máximos ultrapassando os 50%. Porém, a grande maioria de unidades possuem MAPEs abaixo de 20%.</p>
 
-[Gráfico]
+<img src="https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/MAPE_stores.png" style="height: 500px" align="center">
 
+<p align="justify">Para analisar o desempenho do modelo iremos observar quatro gráficos. No primeiro, chamado "Valores reais e previstos pelo modelo", observa-se claramente que os valores reais e previstos seguem a mesma curva de comportamento ou seja, os dois valores seguem as mesmas tendências, por mais que haja erros inerentes ao processo. No próximo, "Taxa de erro (Previsão / Real"), observa-se que os valores das taxas orbitam o valor 1, que indica igualdade entre valores previstos e reais, indicando que o modelo está relativamente próximo da realidade. Já no terceiro gráfico, "Distribuição de erros absolutos", tem-se uma distribuição dos erros absolutos aproximando-se de uma distribuição normal, embora com assimetria à esquerda, mas com maior frequência de erros absolutos próximos a zero. Por fim, o gráfico "Valores dos erros em relação aos erros previstos" mostra novamente que a maioria dos valores preditos possuem erros absolutos tendendo a zero.</p>
 
-<p align="justify"></p>
+<img src="https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/model_performance.png" style="height: 500px" align="center">
 
-[Gráfico]
-
-
-
+<p align="justify">Com estas análises de erro pode-se concluir que o modelo possui bom desempenho. Cabe a uma análise posterior decidir se a magnitude desses erros é satisfatória para responder a questão de negócio ou se será necessária a aplicação de um novo ciclo do CRISP.</p>
 
 ## 5. Resultados financeiros para o negócio
 <p align="justify">Os valores médios e totais das previsões das 856 lojas da Rossmann para as próximas semanas estão apresentados abaixo:</p>
@@ -269,6 +267,7 @@ Serão fornecidos:
 |       856       |                 $276.908,15                 |          $237.033.377,31          |
 
 <p align="justify">Abaixo está uma tabela com as 5 lojas com maiores vendas previstas para as próximas 6 semanas:</p>
+
 
 
 <p align="justify">Atendendo ao segundo objetivo deste projeto – descrito na seção 1.2 Sobre o projeto –, foi desenvolvido um bot no aplicativo de mensagens Telegram em que o usuário pode digitar o código da loja que deseja receber a previsão de vendas, recebendo uma mensagem como na imagem a seguir:</p>
