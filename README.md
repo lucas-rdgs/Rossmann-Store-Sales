@@ -228,22 +228,31 @@ Serão fornecidos:
 | <strong>H5: </strong>Lojas com mais promoções consecutivas deveriam vender mais | Falsa |Lojas com mais promoções consecutivas vendem **menos**. | Baixa |
 | <strong>H6: </strong>Lojas abertas durante o feriado de Natal deveriam vender mais | Falsa | Lojas abertas durante o **feriado de Natal** vendem **menos** em relação aos outros feriados. | Média |
 | <strong>H7: </strong>Lojas deveriam vender mais ao longo dos anos | Falsa | As lojas estão vendendo **menos** ao longo dos anos. | Alta |
-| <strong>H8: </strong>Lojas deveriam vender mais no segundo semestre do ano | Falsa | As lojas estão vendendo **menos** no **segundo semestre** do ano. | Alta |
-| <strong>H9: </strong>Lojas deveriam vender mais depois do dia 10 de cada mês. | Verdadeira | Lojas **vendem mais depois do dia 10** de cada mês. | Alta |
+| <strong>H8: </strong>Lojas deveriam vender mais no segundo semestre do ano | Verdadeira | As lojas estão vendendo **mais** no **segundo semestre** do ano. | Alta |
+| <strong>H9: </strong>Lojas deveriam vender mais depois do dia 10 de cada mês. | Falsa | Lojas **vendem menos em média depois do dia 10** de cada mês. | Alta |
 | <strong>H10: </strong>Lojas deveriam vender menos aos finais de semana | Verdadeira | Lojas **vendem menos** aos **finais de semana**. | Alta |
 | <strong>H11: </strong>Lojas deveriam vender menos durante os feriados escolares | Verdadeira | Lojas vendem **menos** durante os **feriados escolares**. Porém, nos meses de julho e agosto as vendas em feriados escolares são equiparáveis e maiores, respectivamente, que as vendas em dias sem feriados escolares, pois nesses meses ocorrem as férias escolares de verão. | Baixa |
 
 ### 4.2. Insights
 <p align="justify">A análise exploratória dos dados proporciona alguns insights:</p>
 
-#### Insight 1: 
-<p align="justify"></p>
+#### Insight 1: Distância com competidores
+<p align="justify">As lojas com competidores diretos situados até 1km de distância possuem vendas até 9% maiores que aquelas que possuem competidores mais distantes. A tabela abaixo compila as variações das vendas das lojas com relação à distância do competidor mais próximo.</p>
 
-#### Insight 2: 
-<p align="justify"></p>
+| **Distância do competidor mais próximo** | **Média de vendas por unidade** | **Variação percentual em relação às lojas mais próximas** |
+|:----------------------------------------:|:-------------------------------:|:---------------------------------------------------------:|
+|                 Até 1 km                 |             7.302,47            |                             -                             |
+|                De 1 a 5 km               |             6.836,42            |                          -6,38%                           |
+|               De 5 a 10 km               |             6.742,64            |                          -7,67%                           |
+|               De 10 a 15 km              |             6.620,98            |                          -9,33%                           |
+|               De 15 a 20 km              |             6.845,44            |                          -6,26%                           |
+|               Mais de 20 km              |             7.026,72            |                          -3,78%                           |
 
-#### Insight 3: 
-<p align="justify"></p>
+#### Insight 2: Crescimento das vendas médias durante o feriado de Natal
+<p align="justify">O Natal foi o feriado em que houve maior crescimento de vendas médias por loja em 2014 em relação ao ano anterior, de 10,7%. No mesmo período houve crescimento de 9,5% dos feriados regulares e uma redução de 2,4% nas vendas médias no feriado da Páscoa. O Natal, que em 2013 foi o segundo feriado com maior faturamento médio, ocupou a primeira colocação no ano seguinte. O crescimento total das vendas médias nos feriados foi de 6%</p>
+
+#### Insight 3: Vendas a partir do décido dia do mês
+<p align="justify">Em média, as lojas vendem mais durante os 10 primeiros dias do mês, quando comparado ao restante do mês. Após o décido dia do mês, as vendas médias por dia são 5,7% do que o período do ínicio dos meses.</p>
 
 ## 5. Desempenho do modelo
 <p align="justify">Após a aplicação do modelo de Machine Learning nos dados de treino e teste, é essencial que haja uma análise de erros. Variações entre valores reais e previstos por um modelo são inevitáveis, no entanto um bom modelo encontra valores aceitáveis destas diferenças. Esta etapa é essencial para a escolha entre seguir com os resultados obtidos ou continuar com um novo ciclo do CRISP. Nesta etapa usaremos os Erros Médio Absoluto e Percentual Médio Absoluto (leia mais sobre estas métricas aqui); em resumo, estes erros mostram o quanto em média o modelo pode prever além dos valores reais, para cima ou para baixo, em valores absolutos e percentuais.</p>
