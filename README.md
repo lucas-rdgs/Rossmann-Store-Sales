@@ -303,7 +303,13 @@ Serão fornecidos:
 <p align="justify">Atendendo ao segundo objetivo deste projeto – descrito na seção 1.2 Sobre o projeto –, foi desenvolvido um bot no aplicativo de mensagens Telegram em que o usuário pode digitar o código da loja que deseja receber a previsão de vendas, recebendo uma mensagem como na imagem a seguir:</p>
 
 ## 6. Conclusão
-<p align="justify"></p>
+<p align="justify">Este projeto, conforme seus objetivos iniciais, desenvolve uma análise exploratória dos dados de um conjunto de unidades de farmácias da rede Rossmann, aplica modelos de machine learning e prevê as vendas de cada loja nas 6 semanas seguintes ao fim dos dados temporais, provendo ainda uma ferramenta rápida e simples de visualização dessas previsões através de um bot no aplicativo de mensagens Telegram.</p>
+
+<p align="justify">Após testes de alguns modelos, o escolhido para realizar as previsões foi o XGBoost. Assim, se prevê que as 856 lojas da rede Rossmann venderão em média $276.908,15 cada, totalizando $237.033.377,31 ao fim de 6 semanas. Os valores previstos por loja possuem erro percentual médio (MAPE) de 11,15%.</p>
+
+<p align="justify">A utilização do aplicativo de mensagens Telegram é demonstrada abaixo:</p>
+
+![](https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/telegram_bot.gif)
 
 ## 7. Próximos passos
 <p align="justify">Um novo ciclo do CRISP pode ser desenvolvido para aperfeiçoar o desempenho do modelo e reduzir o erro da previsão das vendas das lojas da Rossmann. Várias abodagens podem ser adotadas, porém pontos importantes não podem ser ignorados pois fornecem melhoras consideráveis na execução do projeto. Uma ordem decrescente de importância de técnicas é apresentada abaixo:</p>
@@ -314,7 +320,6 @@ Serão fornecidos:
 
 <p align="justify">Além das melhorias no modelo de Machine Learning, podem ser feitas modificações no bot do Telegram, tornando a experiência do usuário mais intuitiva e visualmente prazerosa, adotando funcionalidades como:</p>
 
-> - Mensagem inicial;
 > - Função de ajuda;
 > - Possibilidade de solicitar as previsões de mais de uma loja na mesma mensagem;
 > - Teclado personalizado com as funções da aplicação.
