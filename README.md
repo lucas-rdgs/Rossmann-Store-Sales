@@ -281,7 +281,7 @@ Serão fornecidos:
 
 <p align="justify">Com estas análises de erro pode-se concluir que o modelo possui bom desempenho. Cabe a uma análise posterior decidir se a magnitude desses erros é satisfatória para responder a questão de negócio ou se será necessária a aplicação de um novo ciclo do CRISP.</p>
 
-## 5. Resultados financeiros para o negócio
+## 6. Resultados financeiros para o negócio
 <p align="justify">Os valores médios e totais das previsões das 856 lojas da Rossmann para as próximas semanas estão apresentados abaixo:</p>
 
 | Número de lojas | Venda média por loja nas próximas 6 semanas | Vendas total nas próximas semanas |
@@ -299,19 +299,21 @@ Serão fornecidos:
 |    251    |        a       |    extended    |   $704.585,78  |
 
 
+## 7. Bot no aplicativo de mensagens Telegram
+<p align="justify">Atendendo ao segundo objetivo deste projeto – descrito na seção 1.2 Sobre o projeto –, foi desenvolvido um bot no aplicativo de mensagens Telegram em que o usuário pode digitar o código da loja que deseja receber a previsão de vendas, recebendo a previsão de vendas automaticamente.</p>
 
-<p align="justify">Atendendo ao segundo objetivo deste projeto – descrito na seção 1.2 Sobre o projeto –, foi desenvolvido um bot no aplicativo de mensagens Telegram em que o usuário pode digitar o código da loja que deseja receber a previsão de vendas, recebendo uma mensagem como na imagem a seguir:</p>
-
-## 6. Conclusão
-<p align="justify">Este projeto, conforme seus objetivos iniciais, desenvolve uma análise exploratória dos dados de um conjunto de unidades de farmácias da rede Rossmann, aplica modelos de machine learning e prevê as vendas de cada loja nas 6 semanas seguintes ao fim dos dados temporais, provendo ainda uma ferramenta rápida e simples de visualização dessas previsões através de um bot no aplicativo de mensagens Telegram.</p>
-
-<p align="justify">Após testes de alguns modelos, o escolhido para realizar as previsões foi o XGBoost. Assim, se prevê que as 856 lojas da rede Rossmann venderão em média $276.908,15 cada, totalizando $237.033.377,31 ao fim de 6 semanas. Os valores previstos por loja possuem erro percentual médio (MAPE) de 11,15%.</p>
+<p align="justify">Para acessar o bot, [clique aqui](https://t.me/rossmann_lr_bot/) ou copie e cole o seguinte endereço no seu navegador: https://web.telegram.org/k/#@rossmann_lr_bot.</p>
 
 <p align="justify">A utilização do aplicativo de mensagens Telegram é demonstrada abaixo:</p>
 
 ![](https://github.com/lucas-rdgs/Rossmann-Store-Sales/blob/main/telegram_bot.gif)
 
-## 7. Próximos passos
+## 8. Conclusão
+<p align="justify">Este projeto, conforme seus objetivos iniciais, desenvolve uma análise exploratória dos dados de um conjunto de unidades de farmácias da rede Rossmann, aplica modelos de machine learning e prevê as vendas de cada loja nas 6 semanas seguintes ao fim dos dados temporais, provendo ainda uma ferramenta rápida e simples de visualização dessas previsões através de um bot no aplicativo de mensagens Telegram.</p>
+
+<p align="justify">Após testes de alguns modelos, o escolhido para realizar as previsões foi o XGBoost. Assim, se prevê que as 856 lojas da rede Rossmann venderão em média $276.908,15 cada, totalizando $237.033.377,31 ao fim de 6 semanas. Os valores previstos por loja possuem erro percentual médio (MAPE) de 11,15%.</p>
+
+## 9. Próximos passos
 <p align="justify">Um novo ciclo do CRISP pode ser desenvolvido para aperfeiçoar o desempenho do modelo e reduzir o erro da previsão das vendas das lojas da Rossmann. Várias abodagens podem ser adotadas, porém pontos importantes não podem ser ignorados pois fornecem melhoras consideráveis na execução do projeto. Uma ordem decrescente de importância de técnicas é apresentada abaixo:</p>
 
 > - Seleção de diferentes atributos que influenciam as vendas das lojas;
@@ -324,7 +326,7 @@ Serão fornecidos:
 > - Possibilidade de solicitar as previsões de mais de uma loja na mesma mensagem;
 > - Teclado personalizado com as funções da aplicação.
 
-## 8. Tecnologias
+## 10. Tecnologias
 ### Desenvolvimento do código
 [<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" style="height: 50px" align="left"/>](https://jupyter.org/)
 
@@ -341,6 +343,6 @@ Serão fornecidos:
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" style="height: 50px" align="left"/>](https://core.telegram.org/bots)<br/><br/>
 
                                                                                                                     
-## 9. Sobre o autor
+## 10. Sobre o autor
 Olá! Meu nome é Lucas Rodrigues.<br/>
 Conecte-se comigo no meu [Linkedin](https://www.linkedin.com/in/lucasrodrigues3/).
