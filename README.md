@@ -346,6 +346,6 @@ O desenvolvimento do projeto no Jupyter notebook pode ser acessado [aqui](https:
 [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png" style="height: 50px" align="left"/>](https://core.telegram.org/bots)<br/><br/>
 
                                                                                                                     
-## 10. Sobre o autor
+## 11. Sobre o autor
 Olá! Meu nome é Lucas Rodrigues.<br/>
 Conecte-se comigo no meu [Linkedin](https://www.linkedin.com/in/lucasrodrigues3/).
